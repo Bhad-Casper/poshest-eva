@@ -11,12 +11,12 @@
   <div id="welcome-popup" class="popup-overlay">
     <div class="popup-content">
         <h2>Welcome to Poshest-Eva</h2>
-        <p>Discover your Glow with our curated selection of 100% Authentic Skincare.</p>
+        <p>Your curated destination for 100% Authentic Luxury Skincare.</p>
         <button class="popup-btn" onclick="closePopup()">START SHOPPING</button>
     </div>
   </div>
 
-  <div class="launch-banner">✨ Poshest-Eva Official Launch: Use code GLOW for free delivery! ✨</div>
+  <div class="launch-banner">✨ Official Launch: Use code GLOW for free delivery! ✨</div>
 
   <section class="hero">
     <h1>POSHEST-EVA</h1>
@@ -186,7 +186,7 @@
           <div class="card-content">
             <h4>${p.name}</h4>
             <p class="price">₦${p.price}</p>
-            <a class="whatsapp-btn" href="https://wa.me/2348163143247?text=Hello%20IB-Nations!%20I%20want%20to%20order%20the%20${encodeURIComponent(p.name)}" target="_blank">Order on WhatsApp</a>
+            <a class="whatsapp-btn" href="https://wa.me/2348163143247?text=Hello!%20I%20want%20to%20order:%20${encodeURIComponent(p.name)}" target="_blank">Order on WhatsApp</a>
           </div>
         </div>`;
     }
@@ -201,7 +201,12 @@
       });
     }
 
-    function closePopup() { document.getElementById("welcome-popup").style.display = "none"; }
+    // SMOOTH POPUP CLOSE
+    function closePopup() {
+      const p = document.getElementById("welcome-popup");
+      p.style.opacity = "0";
+      setTimeout(() => { p.style.display = "none"; }, 400);
+    }
 
     renderProducts();
   </script>
