@@ -4,63 +4,37 @@
   <meta charset="UTF-8">
   <title>Poshest-Eva | Luxury Skincare Gallery</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    /* --- The CSS Fix --- */
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap');
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Poppins', sans-serif; background: #fffafb; color: #333; }
-    
-    .launch-banner { background: #d4af37; color: white; text-align: center; padding: 10px; font-size: 11px; position: sticky; top: 0; z-index: 1000; }
-    .hero { text-align: center; padding: 40px 20px; background: white; }
-    .hero h1 { font-family: 'Playfair Display', serif; letter-spacing: 2px; }
-    
-    .container { width: 95%; max-width: 1200px; margin: 0 auto; }
-    .cat-title { font-family: 'Playfair Display', serif; font-size: 1.6rem; margin: 30px 0 15px; border-bottom: 2px solid #d4af37; display: inline-block; }
-    .sub-title { font-size: 1.1rem; margin: 15px 0; color: #666; }
-
-    /* --- THIS FIXES THE STACKING MESS --- */
-    .product-grid { 
-      display: grid; 
-      grid-template-columns: repeat(2, 1fr); 
-      gap: 15px; 
-      margin-bottom: 40px; 
-    }
-    
-    .card { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.05); display: flex; flex-direction: column; }
-    .image-container { width: 100%; aspect-ratio: 1/1; overflow: hidden; }
-    .image-container img { width: 100%; height: 100%; object-fit: cover; }
-    
-    .card-content { padding: 12px; text-align: center; flex-grow: 1; }
-    .price { color: #d4af37; font-weight: 700; margin-top: 5px; }
-    .whatsapp-btn { display: block; background: #1a1a1a; color: white; text-decoration: none; padding: 8px; margin-top: 10px; font-size: 11px; border-radius: 4px; }
-    
-    .search-container { max-width: 500px; margin: 20px auto; padding: 0 15px; }
-    #searchInput { width: 100%; padding: 12px; border: 1px solid #eee; border-radius: 25px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-    .hidden { display: none !important; }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <div class="launch-banner">✨ Poshest-Eva Official Launch: Code GLOW for free delivery today! ✨</div>
+  <div id="welcome-popup" class="popup-overlay">
+    <div class="popup-content">
+        <h2>Welcome to Poshest-Eva</h2>
+        <p>Discover your Glow with our curated selection of 100% Authentic Skincare.</p>
+        <button class="popup-btn" onclick="closePopup()">START SHOPPING</button>
+    </div>
+  </div>
+
+  <div class="launch-banner">✨ Poshest-Eva Official Launch: Use code GLOW for free delivery! ✨</div>
 
   <section class="hero">
     <h1>POSHEST-EVA</h1>
-    <p>Authentic Skincare • Real Results</p>
+    <p class="hero-sub">Authentic Skincare • Real Results</p>
   </section>
 
   <div class="search-container">
-    <input type="text" id="searchInput" placeholder="Search brands..." oninput="filterProducts()">
+    <input type="text" id="searchInput" placeholder="Search brands or products..." oninput="filterProducts()">
   </div>
 
   <main class="container" id="products"></main>
 
-  <footer style="background: #1a1a1a; color: #d4af37; padding: 40px; text-align: center; margin-top: 40px;">
+  <footer>
     <h3>POSHEST-EVA</h3>
     <p>WhatsApp: +234 816 314 3247</p>
   </footer>
 
   <script>
-    /* --- ALL YOUR DATA IS BACK HERE --- */
     const products = {
       facialskincare: {
         facialserum: [
@@ -185,7 +159,6 @@
       container.innerHTML = "";
       for (let category in products) {
         const sect = document.createElement("div");
-        sect.className = "category-group";
         sect.innerHTML = `<h2 class="cat-title">${format(category)}</h2>`;
         const data = products[category];
         if (Array.isArray(data)) {
@@ -208,12 +181,12 @@
       return `
         <div class="card" data-name="${p.name.toLowerCase()}">
           <div class="image-container">
-            <img src="${p.image}" alt="${p.name}" onerror="this.src='https://via.placeholder.com/250?text=Product'">
+            <img src="${p.image}" alt="${p.name}" onerror="this.src='https://via.placeholder.com/300?text=Beauty+Product'">
           </div>
           <div class="card-content">
             <h4>${p.name}</h4>
             <p class="price">₦${p.price}</p>
-            <a class="whatsapp-btn" href="https://wa.me/2348163143247?text=Order:%20${encodeURIComponent(p.name)}" target="_blank">Enquire Now</a>
+            <a class="whatsapp-btn" href="https://wa.me/2348163143247?text=Hello%20IB-Nations!%20I%20want%20to%20order%20the%20${encodeURIComponent(p.name)}" target="_blank">Order on WhatsApp</a>
           </div>
         </div>`;
     }
@@ -227,6 +200,8 @@
         c.classList.toggle("hidden", !match);
       });
     }
+
+    function closePopup() { document.getElementById("welcome-popup").style.display = "none"; }
 
     renderProducts();
   </script>
