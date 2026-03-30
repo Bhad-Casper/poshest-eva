@@ -11,6 +11,18 @@ body {
   background-attachment: fixed;
   color: #2c2c2c;
   line-height: 1.6;
+
+.launch-banner {
+  background: #d4af37;
+  color: #1a1a1a;
+  text-align: center;
+  padding: 10px;
+  font-size: 12px;
+  letter-spacing: 2px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
   overflow-x: hidden;
 }
 
