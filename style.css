@@ -9,90 +9,74 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-body {
-  font-family: 'Poppins', sans-serif;
-  background-color: var(--bg);
-  color: #333;
-}
+body { font-family: 'Poppins', sans-serif; background: var(--bg); color: #333; }
 
-/* --- Layout --- */
-.container {
-  width: 95%;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.hero {
-  text-align: center;
-  padding: 40px 20px;
-}
-
-.hero h1 {
-  font-family: 'Playfair Display', serif;
-  letter-spacing: 3px;
-}
-
-/* --- THE GRID: This fixes the "mess" --- */
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 products per row on mobile */
-  gap: 15px;
-  margin-bottom: 40px;
-}
-
-.card {
-  background: white;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+/* --- POPUP STYLING --- */
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.9);
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 5000;
 }
-
-/* --- IMAGE FIX: Forces all images to be the same size --- */
-.image-container {
-  width: 100%;
-  aspect-ratio: 1 / 1; 
-  overflow: hidden;
-}
-
-.image-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* This stops images from stretching */
-}
-
-.card-content { padding: 12px; text-align: center; }
-
-.price { color: var(--gold); font-weight: 700; margin-top: 5px; }
-
-.whatsapp-btn {
-  display: block;
-  background: var(--dark);
-  color: white;
-  text-decoration: none;
-  padding: 8px;
-  margin-top: 10px;
-  font-size: 11px;
-  font-weight: 600;
-  border-radius: 4px;
-}
-
-/* --- Navigation --- */
-.launch-banner {
-  background: var(--gold);
-  color: white;
+.popup-content {
+  background: white;
+  padding: 40px 25px;
   text-align: center;
-  padding: 10px;
-  font-size: 11px;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+  width: 85%;
+  max-width: 380px;
+  border-radius: 4px;
+  border-top: 5px solid var(--gold);
+}
+.popup-content h2 { font-family: 'Playfair Display', serif; margin-bottom: 15px; }
+.popup-content p { font-size: 14px; color: #666; margin-bottom: 20px; }
+.popup-btn { 
+  background: var(--dark); 
+  color: white; 
+  border: none; 
+  padding: 15px; 
+  width: 100%; 
+  font-weight: 600; 
+  text-transform: uppercase; 
+  cursor: pointer;
 }
 
+/* --- LAYOUT & HERO --- */
+.launch-banner { background: var(--gold); color: white; text-align: center; padding: 10px; font-size: 11px; position: sticky; top: 0; z-index: 1000; }
+.hero { text-align: center; padding: 40px 20px; background: white; }
+.hero h1 { font-family: 'Playfair Display', serif; letter-spacing: 2px; font-size: 2.2rem; }
+.hero-sub { text-transform: uppercase; letter-spacing: 2px; font-size: 12px; color: #999; }
+
+.container { width: 95%; max-width: 1200px; margin: 0 auto; }
+.cat-title { font-family: 'Playfair Display', serif; font-size: 1.6rem; margin: 30px 0 10px; border-bottom: 2px solid var(--gold); display: inline-block; }
+.sub-title { font-size: 1.1rem; margin: 15px 0; color: #666; text-transform: capitalize; }
+
+/* --- THE GRID FIX (2 PER ROW ON MOBILE) --- */
+.product-grid { 
+  display: grid; 
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 15px; 
+  margin-bottom: 40px; 
+}
+
+.card { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.05); display: flex; flex-direction: column; }
+.image-container { width: 100%; aspect-ratio: 1/1; overflow: hidden; }
+.image-container img { width: 100%; height: 100%; object-fit: cover; }
+
+.card-content { padding: 12px; text-align: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+.card-content h4 { font-size: 13px; line-height: 1.2; height: 32px; overflow: hidden; margin-bottom: 5px; }
+.price { color: var(--gold); font-weight: 700; font-size: 15px; }
+.whatsapp-btn { display: block; background: var(--dark); color: white; text-decoration: none; padding: 10px; margin-top: 10px; font-size: 11px; border-radius: 4px; font-weight: 600; }
+
+.search-container { max-width: 500px; margin: 20px auto; padding: 0 15px; }
+#searchInput { width: 100%; padding: 12px 20px; border: 1px solid #eee; border-radius: 25px; outline: none; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
 .hidden { display: none !important; }
 
-/* Desktop */
-@media (min-width: 768px) {
-  .product-grid { grid-template-columns: repeat(4, 1fr); }
-}
+footer { background: var(--dark); color: var(--gold); padding: 50px 20px; text-align: center; margin-top: 40px; }
+footer h3 { font-family: 'Playfair Display'; letter-spacing: 2px; }
+footer p { color: #666; font-size: 12px; margin-top: 10px; }
+
+/* Desktop View */
+@media (min-width: 768px) { .product-grid { grid-template-columns: repeat(4, 1fr); } }
